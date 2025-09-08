@@ -1,3 +1,7 @@
 .inter{
   font-family: "Inter", sans-serif;
 }
+.category-btn:hover{
+  background-color: #15803D;
+  color: white;
+}

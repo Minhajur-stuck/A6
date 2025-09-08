@@ -16,7 +16,7 @@
 <body class="inter">
   <header>
     <nav>
-      <div class="navbar bg-[#15803D] bg-base-100 shadow-sm md:px-10">
+      <div class="navbar bg-[#15803D] bg-base-100 shadow-sm md:px-5">
         <div class="navbar-start">
           <div class="dropdown">
             <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
@@ -60,6 +60,33 @@
       </div>
     </section>
   </header>
+
+  <section class="choose-your-tree-section mt-[40px] md:mt-[88px] md:px-5">
+    <div class="mx-auto border">
+      <h1 class="text-center text-[30px] font-bold mb-5">Choose Your Trees</h1>
+      <div class="flex justify-between gap-0">
+        <div class="Categories w-[230px]">
+          <h1 class="mb-4 font-bold text-[22px]">Categories</h1>
+          <div>
+             <button class="text-left cursor-pointer p-2 mb-1 rounded bg-[#15803D] text-white w-[100%] category-btn">All Trees</button>
+          </div>
+          <div id="categories-container">
+             
+          </div>
+        </div>
+        <div id="card-container" class=" border grid gap-2 grid-cols-3 p-1">
+          
+        </div>
+        <div class="border w-[200px]">
+          <h1 class="text-[16px] font-bold mb-4">Your Cart</h1>
+          <div id="cart-container">
+            
+          </div>
+          <div id="total-money" class="text-right font-bold"></div> 
+        </div>
+      </div>
+    </div>
+  </section>
   <script src="script.js"></script>
 </body>
 </html>
