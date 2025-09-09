@@ -1,3 +1,15 @@
+const manageSpinner=(status)=> {
+  if(status === true){
+    document.getElementById('spinner-div').classList.remove('hidden')
+    document.getElementById('card-container').classList.add('hidden')
+  } else{
+      document.getElementById('spinner-div').classList.add('hidden')
+    document.getElementById('card-container').classList.remove('hidden')
+  }
+}
+
+
+
 const loadCategories =()=> {
   const url = 'https://openapi.programming-hero.com/api/categories'
   fetch(url)
@@ -12,20 +24,26 @@ const displayCategories=(data)=> {
   data.forEach(element => {
     const div = document.createElement('div');
     div.innerHTML=`
-      <button class="text-left cursor-pointer p-2 mb-1 rounded text-[#1F2937]  w-[100%] category-btn">${element.category_name
-}</button>
+      <button id="cate-btn-${element.id}"  onclick="loadCategoriesCard(${element.id})" class="text-left cursor-pointer p-2 mb-1 rounded text-[#1F2937] w-[100%] category-btn     cate-list">${element.category_name}</button>
     `
-
     categoryContainer.append(div)
   });
+
 }
 loadCategories()
 
+
+
 const loadAllPlants =()=> {
+  manageSpinner(true)
   const url ="https://openapi.programming-hero.com/api/plants";
   fetch(url)
   .then(res => res.json())
-  .then(data => displayAllPlants(data.plants))
+  .then(data => {
+    removeActive()
+    document.getElementById('all-tree').classList.add('active')
+    displayAllPlants(data.plants)
+  })
 }
 // id: 1, image: 'https://i.ibb.co.com/cSQdg7tf/mango-min.jpg', name: 'Mango Tree', description:
 const displayAllPlants=(data)=> {
@@ -33,22 +51,21 @@ const displayAllPlants=(data)=> {
   cardContainer.innerHTML='';
 
   data.forEach(element => {
-    
     const newDiv = document.createElement('div');
     newDiv.innerHTML=`
       <div class="card  w-[280px] h-[450px] shadow-sm">
             <figure>
               <div class="w-[100%] h-[186px]">
                 <img class="w-full h-full object-cover"
-                 src= />
+                 src=${element.image}/>
               </div>
             </figure>
             <div class="card-body p-3">
-              <h2 class="card-title">${element.name}</h2>
+              <h2 onclick="loadDetails(${element.id})" class="card-title">${element.name}</h2>
               <p>${element.description}</p>
               <div class="flex justify-between items-center ">
                 <div class="bg-[#DCFCE7]  p-1 rounded-lg"><span class="text-[#15803D]">${element.category}</span></div>
-                <div class="font-bold">$${element.price}</div>
+                <div class="font-bold">৳${element.price}</div>
               </div>
               <button onclick="addToCart('${element.name}',${element.price})" class="btn cursor-pointer border p-2 mb-1 rounded-3xl bg-[#15803D] text-white w-[100%]">Add to Cart</button>
             </div>
@@ -57,9 +74,63 @@ const displayAllPlants=(data)=> {
     // console.log(element.name)
     cardContainer.append(newDiv)
   });
+    manageSpinner(false)
+
 }
 loadAllPlants()
 
+
+const loadDetails=(id)=>{
+  const url = `https://openapi.programming-hero.com/api/plant/${id}`;
+  fetch(url)
+  .then(res => res.json())
+  .then(data => {
+    displayModal(data.plants)
+  
+  })
+}
+
+
+
+const displayModal = (data)  =>{
+  console.log(data)
+  const modalDiv = document.getElementById('details-container');
+  modalDiv.innerHTML=`
+    <h1 class="text-xl font-semibold mb-1">${data.name}</h1>
+     <div class="w-[100%] h-[270px] mb-1">
+                <img class="w-full h-full object-cover rounded"
+                 src=${data.image}/>
+              </div>
+    <h2><span class="text-[16px] font-semibold mb-1">Category :</span><span>  ${data.category}</span></h2>
+    <h2><span class="text-[16px] font-semibold mb-1">Price :</span><span> ৳${data.price}</span></h2>
+    <h2><span class="text-[16px] font-semibold mb-1">Description :</span><span> ${data.description}</span></h2>
+    
+  `
+  document.getElementById('tree_modal').showModal();
+}
+
+const removeActive=()=>{
+  document.getElementById('all-tree').classList.remove('active')
+  const btns = document.querySelectorAll(".cate-list");
+  btns.forEach(btn => {
+    btn.classList.remove('active')
+  });
+}
+
+
+
+const loadCategoriesCard=(id)=>{
+  manageSpinner(true)
+  const url=`https://openapi.programming-hero.com/api/category/${id}`
+  fetch(url)
+  .then(res => res.json())
+  .then(data => {
+    removeActive()
+    const categoyBtn = document.getElementById(`cate-btn-${id}`);
+    categoyBtn.classList.add('active')
+    displayAllPlants(data.plants)
+  })
+}
 
 let total=0
 const addToCart = (name, price)=> {
@@ -68,15 +139,15 @@ const addToCart = (name, price)=> {
   total+= price
   const newDiv = document.createElement('div');
   newDiv.innerHTML=`
-      <div>
+      
                <div class="flex justify-between items-center">
                 <div>
                   <h1 class="font-bold text-[18px]">${name}</h1>
-                  <p>$${price}</p>
+                  <p>৳${price}</p>
                 </div>
-                <button id="" onclick="subtraction(${total},${price})" class="cursor-pointer ">❌</button>
+                <button id="" onclick="subtraction(${price})" class="cursor-pointer ">❌</button>
                 </div>
-            </div>
+            
   `
   totalMoney(total)
   cartContainer.append(newDiv)
@@ -84,13 +155,32 @@ const addToCart = (name, price)=> {
 
 
 
-const subtraction=(total, price)=> {
 
+
+const subtraction=(price)=> {
+  // console.log(total, price)
+  total-=price;
+  console.log(total)
+  const cartContainer =document.getElementById('cart-container');
+  cartContainer.addEventListener('click',(e)=> {
+    const child = e.target.parentElement.parentElement;
+    child.remove()
+  })
+  if(total === 0){
+    const sum = document.getElementById('total-money');
+  sum.innerHTML =' '
+  } else{
+    const totalMoneyDispy = document.getElementById('money');
+    totalMoneyDispy.innerText= total
+  }
+  
+
+  // console.log(cartContainer, sub)
 }
 
 const totalMoney=(money)=> {
   const sum = document.getElementById('total-money');
-  sum.innerHTML =`Total: ${money}`
+  sum.innerHTML =`Total: ৳ <span id="money">${money}</span>`
   // console.log(money)
 }
 

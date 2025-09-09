@@ -62,22 +62,26 @@
   </header>
 
   <section class="choose-your-tree-section mt-[40px] md:mt-[88px] md:px-5">
-    <div class="mx-auto border">
+    <div class="mx-auto">
       <h1 class="text-center text-[30px] font-bold mb-5">Choose Your Trees</h1>
+      <div id="spinner-div" class="flex justify-center items-center hidden">
+         <span class="loading loading-dots loading-md"></span>
+      </div>
+     
       <div class="flex justify-between gap-0">
         <div class="Categories w-[230px]">
           <h1 class="mb-4 font-bold text-[22px]">Categories</h1>
           <div>
-             <button class="text-left cursor-pointer p-2 mb-1 rounded bg-[#15803D] text-white w-[100%] category-btn">All Trees</button>
+             <button id="all-tree" onclick="loadAllPlants()" class="text-left cursor-pointer p-2 mb-1 rounded text-[#1F2937]  category-btn w-[100%]  active">All Trees</button>
           </div>
           <div id="categories-container">
              
           </div>
         </div>
-        <div id="card-container" class=" border grid gap-2 grid-cols-3 p-1">
+        <div id="card-container" class="  grid gap-2 grid-cols-3 p-1">
           
         </div>
-        <div class="border w-[200px]">
+        <div class=" w-[200px]">
           <h1 class="text-[16px] font-bold mb-4">Your Cart</h1>
           <div id="cart-container">
             
@@ -88,7 +92,7 @@
     </div>
   </section>
   <section>
-    <div class="w-[866px] mx-auto border mt-[100px]">
+    <div class="w-[866px] mx-auto mt-[100px]">
       <h1 class="text-center text-[#1F2937] text-[30px] font-bold mb-5">About the Campaign</h1>
       <div class="flex justify-between items-center">
         <img class="w-[45%]" src="./assets/about.png" alt="">
@@ -146,6 +150,19 @@
       </div>
     </div>
   </section>
+  <!-- Open the modal using ID.showModal() method -->
+<!-- <button class="btn" onclick="my_modal_5.showModal()">open modal</button> -->
+<dialog id="tree_modal" class="modal modal-bottom sm:modal-middle">
+  <div class="modal-box">
+    <div id="details-container"></div>
+    <div class="modal-action">
+      <form method="dialog">
+        <!-- if there is a button in form, it will close the modal -->
+        <button class="btn">Close</button>
+      </form>
+    </div>
+  </div>
+</dialog>
 
   <footer class="h-[70px] flex justify-center items-center bg-[#14532D]">
     <div class="text-white font-semibold text-[18px]">
