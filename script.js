@@ -24,7 +24,7 @@ const displayCategories=(data)=> {
   data.forEach(element => {
     const div = document.createElement('div');
     div.innerHTML=`
-      <button id="cate-btn-${element.id}"  onclick="loadCategoriesCard(${element.id})" class="text-left cursor-pointer p-2 mb-1 rounded text-[#1F2937] w-[100%] category-btn     cate-list">${element.category_name}</button>
+      <button id="cate-btn-${element.id}"  onclick="loadCategoriesCard(${element.id})" class="text-center md:text-left cursor-pointer p-2 mb-1 rounded text-[#1F2937] w-[100%] category-btn     cate-list">${element.category_name}</button>
     `
     categoryContainer.append(div)
   });
@@ -45,7 +45,7 @@ const loadAllPlants =()=> {
     displayAllPlants(data.plants)
   })
 }
-// id: 1, image: 'https://i.ibb.co.com/cSQdg7tf/mango-min.jpg', name: 'Mango Tree', description:
+
 const displayAllPlants=(data)=> {
   const cardContainer =document.getElementById('card-container');
   cardContainer.innerHTML='';
@@ -140,12 +140,12 @@ const addToCart = (name, price)=> {
   const newDiv = document.createElement('div');
   newDiv.innerHTML=`
       
-               <div class="flex justify-between items-center">
-                <div>
-                  <h1 class="font-bold text-[18px]">${name}</h1>
-                  <p>৳${price}</p>
+               <div class="flex justify-between items-center mb-1 px-3 md:px-1 bg-[#CFF0DC] rounded">
+                <div class="">
+                  <h1 class="font-bold text-[16px] mb-0.5">${name}</h1>
+                  <h1 class="text-left text-gray-600">৳${price} × 1</h1>
                 </div>
-                <button id="" onclick="subtraction(${price})" class="cursor-pointer ">❌</button>
+                <button id="" onclick="subtraction(${price})" class="cursor-pointer "><span class="text-[26px] text-gray-600">×</span></button>
                 </div>
             
   `
@@ -180,7 +180,10 @@ const subtraction=(price)=> {
 
 const totalMoney=(money)=> {
   const sum = document.getElementById('total-money');
-  sum.innerHTML =`Total: ৳ <span id="money">${money}</span>`
+  sum.innerHTML =`<div class="flex justify-between">
+  <div>Total:</div>
+  <span>৳<span id="money">${money}</span></span>
+  </div> `
   // console.log(money)
 }
 

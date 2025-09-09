@@ -46,8 +46,8 @@
       </div>
     </nav>
     <section class="hero-section-start">
-      <div class="flex flex-col md:flex-row justify-between md:items-center h-[400px] md:h-[290px]  bg-[#CFF0DC]">
-        <img class="w-[30%] md:w-[30%]" src="./assets/hero-leaf1.png" alt="">
+      <div class="flex flex-col md:flex-row justify-between md:items-center h-[400px] md:h-[290px]  bg-[#CFF0DC] banner-div" >
+        <img class="w-[30%] md:w-[30%]" src="" alt="">
           <div class="text-center space-y-4">
             <h1 class="text-[25px] text-nowrap text-[#1F2937] md:text-[42px] font-bold">Plant a Tree, Grow a Future</h1>
             <p class="text-[12px] px-4 md:text-[14px] text-[#1F2937]">Join our mission to plant 1 million trees and make the Earth greener for future
@@ -55,7 +55,7 @@
               <button class="btn bg-[#FACC15] rounded-3xl text-[#15803D]">Get Involved</button>
           </div>
          
-           <img class="w-[30%] md:w-[30%] ml-[70%] md:ml-[0%]" src="./assets/hero-leaf2.png" alt="">
+           <img class="w-[30%] md:w-[30%] ml-[70%] md:ml-[0%]" src="" alt="">
          
       </div>
     </section>
@@ -68,35 +68,35 @@
          <span class="loading loading-dots loading-md"></span>
       </div>
      
-      <div class="flex justify-between gap-0">
-        <div class="Categories w-[230px]">
+      <div class="flex flex-col md:flex-row justify-between gap-0">
+        <div class="Categories w-[90%]  flex flex-col mx-auto text-center md:w-[230px] md:text-left">
           <h1 class="mb-4 font-bold text-[22px]">Categories</h1>
           <div>
-             <button id="all-tree" onclick="loadAllPlants()" class="text-left cursor-pointer p-2 mb-1 rounded text-[#1F2937]  category-btn w-[100%]  active">All Trees</button>
+             <button id="all-tree" onclick="loadAllPlants()" class="md:text-left  cursor-pointer p-2 mb-1 rounded text-[#1F2937]  category-btn w-[100%]  active">All Trees</button>
           </div>
           <div id="categories-container">
              
           </div>
         </div>
-        <div id="card-container" class="  grid gap-2 grid-cols-3 p-1">
+        <div id="card-container" class="  grid gap-2 md:grid-cols-3 p-1  place-items-center">
           
         </div>
-        <div class=" w-[200px]">
-          <h1 class="text-[16px] font-bold mb-4">Your Cart</h1>
-          <div id="cart-container">
+        <div class="w-full text-center  md:w-[200px] mt-3 md:mt-0 md:text-left ">
+          <h1 class="text-[20px] md:text-[16px] font-bold mb-4">Your Cart</h1>
+          <div id="cart-container" class=" md:px-0">
             
           </div>
-          <div id="total-money" class="text-right font-bold"></div> 
+          <div id="total-money" class="text-right font-bold px-0.5"></div> 
         </div>
       </div>
     </div>
   </section>
   <section>
-    <div class="w-[866px] mx-auto mt-[100px]">
+    <div class="w-full md:w-[866px] mx-auto mt-[100px]">
       <h1 class="text-center text-[#1F2937] text-[30px] font-bold mb-5">About the Campaign</h1>
-      <div class="flex justify-between items-center">
-        <img class="w-[45%]" src="./assets/about.png" alt="">
-        <div>
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <img class="w-[80%] md:w-[45%]" src="./assets/about.png" alt="">
+        <div class="w-[80%] md:w-[full] flex flex-col mx-auto">
           <p class="text-[#1F2937]">Green Earth is a global tree plantation initiative dedicated to fighting climate change. Since our start, we’ve planted over 500,000 trees worldwide. By joining our campaign, you help restore forests, create habitats for wildlife, and combat global warming.</p>
           <ul class="list-disc ml-7 mt-7">
             <li>Restoration of natural habitats</li>
@@ -107,23 +107,23 @@
       </div>
     </div>
   </section>
-  <section class="bg-[#CFF0DC]   mt-[100px] h-[430px] flex justify-center items-center">
-    <div class=" w-[1250px] h-[250px] mx-auto">
+  <section class="bg-[#CFF0DC]   mt-[100px] h-[800px] md:h-[430px] flex justify-center items-center">
+    <div class="w-full md:w-[1250px] md:h-[250px] mx-auto">
       <h1 class="text-center font-semibold text-[25px] mb-15">Our Impact</h1>
-      <div class="flex justify-between">
-        <div class="w-[400px] h-[150px] text-center bg-[#FFFFFF] flex items-center justify-center rounded-lg">
+      <div class="flex flex-col items-center gap-10 md:gap-0 md:flex-row justify-between">
+        <div class="w-[90%] md:w-[400px] h-[150px] text-center bg-[#FFFFFF] flex items-center justify-center rounded-lg ">
           <div>
             <h1 class="text-[#15803D] text-[30px] font-semibold ">500K+</h1>
             <p class="text-[#1F2937]">Trees Planted</p>
           </div>
         </div>
-        <div class="w-[400px] h-[150px] text-center bg-[#FFFFFF] flex items-center justify-center rounded-lg">
+        <div class="w-[90%] md:w-[400px] h-[150px] text-center bg-[#FFFFFF] flex items-center justify-center rounded-lg">
           <div>
             <h1 class="text-[#15803D] text-[30px] font-semibold">120+</h1>
             <p class="text-[#1F2937]">Communities Involved</p>
           </div>
         </div>
-        <div class="w-[400px] h-[150px] text-center bg-[#FFFFFF] flex items-center justify-center rounded-lg">
+        <div class="w-[90%] md:w-[400px] h-[150px] text-center bg-[#FFFFFF] flex items-center justify-center rounded-lg">
           <div>
             <h1 class="text-[#15803D] text-[30px] font-semibold">30+</h1>
             <p class="text-[#1F2937]">Countries Reached</p>
@@ -134,7 +134,7 @@
     </div>
   </section>
 
-  <section class="bg-[#166534] flex justify-center items-center h-[500px]">
+  <section class="bg-[#166534] flex justify-center items-center  md:h-[500px]">
     <div class="w-[500px] h-[390px] ">
       <h1 class="text-center text-white mb-7 mt-7 text-[22px] font-semibold">Plant a Tree Today</h1>
       <div class="bg-[#15803D] p-[40px]   flex flex-col gap-3 h-[290px] rounded-lg">
@@ -165,7 +165,7 @@
 </dialog>
 
   <footer class="h-[70px] flex justify-center items-center bg-[#14532D]">
-    <div class="text-white font-semibold text-[18px]">
+    <div class="text-white font-semibold text-[15px]">
       © 2025 Green Earth. All Rights Reserved.
     </div>
   </footer>
